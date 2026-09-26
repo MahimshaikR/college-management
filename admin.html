@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Admin Portal | NRIIT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/lab-and-voice.css">
+  <link rel="stylesheet" href="css/verifyhub.css">
+  <link rel="stylesheet" href="css/faculty-connect.css">
+  <link rel="stylesheet" href="css/portal-enhancements.css">
+  <style>
+    .section-view {
+      display: none;
+    }
+
+    .section-view.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mobile-overlay"></div>
+
+  <div class="dashboard-layout">
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="admin.html" class="sidebar-brand-link"
+          style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+          <div
+            style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 1.5px solid #d4af37; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            <img src="img/nriit-logo.png" alt="NRIIT Autonomous Seal"
+              style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div>
+            <span style="font-size: 17px; font-weight: 800; letter-spacing: -0.02em;">NRIIT</span>
+            <span
+              style="display: block; font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em;">Administration</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-label">Management</div>
+        <a href="#overview" class="sidebar-link active" data-target="section-overview">
+          <i class="fas fa-tachometer-alt"></i> <span>Executive Overview</span>
+        </a>
+        <a href="#users" class="sidebar-link" data-target="section-users">
+          <i class="fas fa-id-card"></i> <span>User Accounts Directory</span>
+        </a>
+        <a href="#account-mgmt" class="sidebar-link" data-target="section-account-mgmt" id="nav-account-mgmt">
+          <i class="fas fa-users-cog text-warning"></i> <span>Account Management</span>
+        </a>
+        <a href="#register-student" class="sidebar-link" data-target="section-register-student"
+          id="nav-register-student">
+          <i class="fas fa-user-plus text-primary"></i> <span>Register Student</span>
+        </a>
+        <a href="#register-faculty" class="sidebar-link" data-target="section-register-faculty"
+          id="nav-register-faculty">
+          <i class="fas fa-chalkboard-teacher text-success"></i> <span>Register Faculty</span>
+        </a>
+        <a href="#announcements-exams" class="sidebar-link" data-target="section-announcements-exams"
+          id="nav-announcements-exams">
+          <i class="fas fa-bullhorn text-danger"></i> <span>Announcements & Exams</span>
+        </a>
+        <a href="#inquiries" class="sidebar-link" data-target="section-inquiries">
+          <i class="fas fa-user-plus"></i> <span>Admission Inquiries</span>
+        </a>
+        <a href="#audits" class="sidebar-link" data-target="section-audits">
+          <i class="fas fa-history"></i> <span>Security Audit Logs</span>
+        </a>
+        <a href="#reports" class="sidebar-link" data-target="section-reports">
+          <i class="fas fa-file-export"></i> <span>Reports & Exports</span>
+        </a>
+        <a href="#dept-ops" class="sidebar-link" data-target="section-dept-ops">
+          <i class="fas fa-cubes"></i> <span>Campus Department Ops</span>
+        </a>
+        <a href="#lab-exam-mgmt" class="sidebar-link" data-target="section-lab-exam-mgmt" id="nav-lab-exam-mgmt">
+          <i class="fas fa-laptop-code text-primary"></i> <span>Lab Exam Management</span>
+        </a>
+        <a href="#documents-verification" class="sidebar-link" data-target="section-documents-verification"
+          id="nav-documents-verification">
+          <i class="fas fa-file-shield text-info"></i> <span>Documents & Verification</span>
+        </a>
+        <a href="#faculty-connect" class="sidebar-link" data-target="section-faculty-connect" id="nav-faculty-connect">
+          <i class="fas fa-chalkboard-teacher text-primary"></i> <span>Faculty Connect</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="user-avatar user-avatar-display">AD</div>
+        <div class="user-info">
+          <div class="user-name user-name-display">Vikramaditya Rao</div>
+          <div class="user-role user-role-display">College Administrator</div>
+        </div>
+        <button class="logout-btn icon-btn" title="Sign Out"
+          style="width: 32px; height: 32px; border: none; background: none;">
+          <i class="fas fa-sign-out-alt text-danger"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN BODY -->
+    <main class="dashboard-main">
+      <!-- TOPBAR -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button id="mobile-menu-btn" class="icon-btn mobile-menu-btn" title="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <span class="portal-badge"
+            style="background: var(--primary-900); color: #fff; border-color: var(--primary-800);">
+            <i class="fas fa-user-shield"></i> College Admin
+          </span>
+          <div style="position: relative; width: 280px;" class="hide-mobile">
+            <input type="text" id="global-search-input" class="form-input"
+              placeholder="Search system entities, users..." style="padding: 8px 12px 8px 34px; font-size: 13px;">
+            <i class="fas fa-search"
+              style="position: absolute; left: 12px; top: 11px; color: var(--text-light); font-size: 13px;"></i>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="icon-btn" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge-dot notif-badge-dot" style="display: none;"></span>
+          </button>
+          <div
+            style="display: flex; align-items: center; gap: 10px; padding-left: 8px; border-left: 1px solid var(--border-color);">
+            <div class="user-avatar user-avatar-display" style="width: 34px; height: 34px; font-size: 13px;">AD</div>
+            <div class="hide-mobile" style="text-align: left;">
+              <div class="user-name-display" style="font-size: 13px; font-weight: 700; line-height: 1.2;">Vikramaditya
+                Rao</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Admin • Operations</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT AREA -->
+      <div class="dashboard-content">
+
+        <!-- ================= SECTION 1: OVERVIEW ================= -->
+        <section id="section-overview" class="section-view active">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Campus Institutional Administration</h1>
+              <p class="page-subtitle">Real-time status across academic operations, enrollment, collections, and
+                security</p>
+            </div>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div>
+                <div class="stat-val" id="stat-admin-students">1,420</div>
+                <div class="stat-title">Total Enrolled Students</div>
+                <span class="status-badge badge-success" style="margin-top: 6px; font-size: 11px;">Across 4
+                  Departments</span>
+              </div>
+              <div class="stat-icon-wrapper stat-primary"><i class="fas fa-user-graduate"></i></div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-val" id="stat-admin-faculty">85</div>
+                <div class="stat-title">Teaching Faculty</div>
+                <span class="status-badge badge-primary" style="margin-top: 6px; font-size: 11px;">100% Active</span>
+              </div>
+              <div class="stat-icon-wrapper stat-success"><i class="fas fa-chalkboard-teacher"></i></div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-val" id="stat-admin-fees">₹4.82 Cr</div>
+                <div class="stat-title">Fee Realization</div>
+                <span class="status-badge badge-success" style="margin-top: 6px; font-size: 11px;">91.4% Target
+                  Achieved</span>
+              </div>
+              <div class="stat-icon-wrapper stat-warning"><i class="fas fa-hand-holding-usd"></i></div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-val" id="stat-admin-inquiries">18</div>
+                <div class="stat-title">Admissions Inquiries</div>
+                <span class="status-badge badge-danger" style="margin-top: 6px; font-size: 11px;">Pending Review</span>
+              </div>
+              <div class="stat-icon-wrapper stat-danger"><i class="fas fa-envelope-open-text"></i></div>
+            </div>
+          </div>
+
+          <!-- System Status & Server Health Grid -->
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px;">
+            <div class="card">
+              <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 16px;"><i
+                  class="fas fa-server text-primary"></i> Super App Infrastructure & Microservices</h3>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div
+                  style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong>Core Node.js / Express REST API</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">Port 5000 • Serving Static Frontend & API
+                      Gateway</div>
+                  </div>
+                  <span class="status-badge badge-success"><i class="fas fa-check-circle"></i> OPERATIONAL</span>
+                </div>
+                <div
+                  style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong>MongoDB Database & Memory Engine</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">Mongoose ODM • Hybrid Fallback Cluster</div>
+                  </div>
+                  <span class="status-badge badge-success"><i class="fas fa-check-circle"></i> CONNECTED</span>
+                </div>
+                <div
+                  style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong>Grounded AI Co-Pilot & RAG Engine</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">Institutional Regulations Knowledgebase
+                    </div>
+                  </div>
+                  <span class="status-badge badge-success"><i class="fas fa-check-circle"></i> ONLINE</span>
+                </div>
+                <div
+                  style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong>Excel / PDF Document Generation Service</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">PDFKit Hall Tickets & ExcelJS Attendance
+                      Processing</div>
+                  </div>
+                  <span class="status-badge badge-success"><i class="fas fa-check-circle"></i> READY</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 16px;"><i
+                  class="fas fa-bolt text-warning"></i> Quick Operations</h3>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-outline" style="justify-content: flex-start;"
+                  onclick="document.querySelector('[data-target=section-users]').click();">
+                  <i class="fas fa-user-plus text-primary"></i> Manage User Accounts & Status
+                </button>
+                <button class="btn btn-outline" style="justify-content: flex-start;"
+                  onclick="document.querySelector('[data-target=section-inquiries]').click();">
+                  <i class="fas fa-id-card text-success"></i> Review Public Website Inquiries
+                </button>
+                <button class="btn btn-outline" style="justify-content: flex-start;"
+                  onclick="document.querySelector('[data-target=section-audits]').click();">
+                  <i class="fas fa-shield-alt text-danger"></i> Inspect Security Audit Trail
+                </button>
+                <button class="btn btn-outline" style="justify-content: flex-start;"
+                  onclick="document.querySelector('[data-target=section-reports]').click();">
+                  <i class="fas fa-download text-primary"></i> Export Institutional CSV Reports
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 2: USERS DIRECTORY ================= -->
+        <section id="section-users" class="section-view">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">User Accounts & Access Control</h1>
+              <p class="page-subtitle">Manage institutional users, roles, account active statuses, and access
+                permissions</p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 20px; padding: 16px;">
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 240px;">
+                <input type="text" id="user-filter-search" class="form-input"
+                  placeholder="Search user by name or email...">
+              </div>
+              <div style="width: 200px;">
+                <select id="user-filter-role" class="form-select">
+                  <option value="">All Roles (13 Roles)</option>
+                  <option value="student">Student</option>
+                  <option value="faculty">Faculty</option>
+                  <option value="hod">HOD</option>
+                  <option value="parent">Parent</option>
+                  <option value="admin">Admin</option>
+                  <option value="principal">Principal</option>
+                  <option value="accountant">Accountant</option>
+                  <option value="exam_cell">Exam Cell</option>
+                  <option value="placement_officer">Placement Officer</option>
+                  <option value="librarian">Librarian</option>
+                  <option value="hostel_warden">Hostel Warden</option>
+                  <option value="transport_staff">Transport Staff</option>
+                  <option value="event_coordinator">Event Coordinator</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Role</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 24px; color: var(--text-muted);"><i
+                      class="fas fa-spinner fa-spin"></i> Fetching users directory...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 3: ADMISSION INQUIRIES ================= -->
+        <section id="section-inquiries" class="section-view">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Public Website Admission Inquiries</h1>
+              <p class="page-subtitle">Prospect applications submitted through the public NRI Institute of Technology
+                portal</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Candidate Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Program Interested</th>
+                  <th>Date Submitted</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-inquiries-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; padding: 24px; color: var(--text-muted);"><i
+                      class="fas fa-spinner fa-spin"></i> Loading inquiries...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 4: SECURITY AUDIT TRAIL ================= -->
+        <section id="section-audits" class="section-view">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">System Security & Audit Trail</h1>
+              <p class="page-subtitle">Immutable chronological log of authentication, marks changes, fee transactions,
+                and status edits</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Operator</th>
+                  <th>Action</th>
+                  <th>Module</th>
+                  <th>IP Address</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="admin-audits-table-body">
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 24px; color: var(--text-muted);"><i
+                      class="fas fa-spinner fa-spin"></i> Loading audit logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 5: REPORTS & EXPORTS ================= -->
+        <section id="section-reports" class="section-view">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Institutional Reports & Excel Exports</h1>
+              <p class="page-subtitle">Generate regulatory reports for AICTE, NAAC, and internal university governance
+              </p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div class="card">
+              <div style="font-size: 28px; color: var(--primary-600); margin-bottom: 12px;"><i
+                  class="fas fa-user-clock"></i></div>
+              <h3 style="font-size: 16px; font-weight: 800;">Semester Attendance Defaulters Report</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 16px;">List of all students currently
+                below 75% attendance threshold across all 4 departments.</p>
+              <button class="btn btn-primary btn-sm export-report-btn" data-type="attendance">
+                <i class="fas fa-file-excel"></i> Export CSV Defaulters
+              </button>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 28px; color: var(--success-600); margin-bottom: 12px;"><i
+                  class="fas fa-money-check-alt"></i></div>
+              <h3 style="font-size: 16px; font-weight: 800;">Fee Collection & Dues Ledger</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 16px;">Consolidated ledger of paid vs
+                pending student tuition and examination dues.</p>
+              <button class="btn btn-primary btn-sm export-report-btn" data-type="fees">
+                <i class="fas fa-file-excel"></i> Export CSV Fees Ledger
+              </button>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 28px; color: var(--warning-600); margin-bottom: 12px;"><i
+                  class="fas fa-briefcase"></i></div>
+              <h3 style="font-size: 16px; font-weight: 800;">Campus Placements Placement Summary</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 16px;">Offers released, participating
+                corporate partners, packages, and eligibility stats.</p>
+              <button class="btn btn-primary btn-sm export-report-btn" data-type="placements">
+                <i class="fas fa-file-excel"></i> Export Placement Data
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SECTION 6: CAMPUS DEPARTMENT OPERATIONS ================= -->
+        <section id="section-dept-ops" class="section-view">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Campus Department Operations & Oversight</h1>
+              <p class="page-subtitle">Centralized governance across Accounts, Examinations, Library, Hostels,
+                Transport, and Corporate Placements</p>
+            </div>
+            <button class="btn btn-outline btn-sm" id="btn-refresh-ops">
+              <i class="fas fa-sync-alt"></i> Refresh Department Health
+            </button>
+          </div>
+
+          <!-- Department Operations Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px;">
+
+            <!-- 1. ACCOUNTS & FINANCE -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #ECFDF5; color: #059669; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-receipt"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Accounts & Finance</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Bursar & Treasury Desk</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-success">91.3% COLLECTED</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Total Annual Billed:</span>
+                  <strong>₹5,28,00,000</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Total Realized Dues:</span>
+                  <strong class="text-success">₹4,82,00,000</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Pending Collections:</span>
+                  <strong class="text-danger">₹46,00,000</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Online Payment Gateways:</span>
+                  <span class="status-badge badge-success" style="font-size: 10px;">Razorpay & Stripe Online</span>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Accounts" style="width: 100%;">
+                <i class="fas fa-check-double"></i> Reconcile Daily Bank Settlements
+              </button>
+            </div>
+
+            <!-- 2. EXAMINATIONS CELL -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #EFF6FF; color: #2563EB; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-id-card"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Examinations Cell</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Controller of Examinations</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-primary">READY</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Registered Candidates:</span>
+                  <strong>1,420 Enrolled Students</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Digital Hall Tickets:</span>
+                  <strong class="text-success">1,420 / 1,420 Generated</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Question Paper Repository:</span>
+                  <span class="status-badge badge-success" style="font-size: 10px;">18 Sets Sealed in Strongroom</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Examination Window:</span>
+                  <strong>Oct 15 - Oct 29, 2026</strong>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Exam Cell" style="width: 100%;">
+                <i class="fas fa-print"></i> Dispatch Hall Tickets Broadcast
+              </button>
+            </div>
+
+            <!-- 3. CENTRAL LIBRARY -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #FDF4FF; color: #A855F7; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Central Library</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Chief Librarian & OPAC Desk</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-success">RFID ONLINE</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Catalog Volume Count:</span>
+                  <strong>54,200 Titles (1,18,000 Volumes)</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Active Borrowed Books:</span>
+                  <strong>1,280 Circulating</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Overdue Defaulters:</span>
+                  <span class="status-badge badge-warning" style="font-size: 10px;">14 Notices Sent</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Digital E-Journals:</span>
+                  <strong>IEEE, ACM, ScienceDirect Active</strong>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Library" style="width: 100%;">
+                <i class="fas fa-barcode"></i> Run Automated RFID Gate Scan
+              </button>
+            </div>
+
+            <!-- 4. HOSTELS & RESIDENTIAL LIFE -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #FEF3C7; color: #D97706; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-hotel"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Hostels & Housing</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Chief Warden Administration</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-warning">94.4% OCCUPIED</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Active Hostel Blocks:</span>
+                  <strong>4 Blocks (Aryabhata, Bhaskara, Gargi, Kalpana)</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Resident Occupancy:</span>
+                  <strong>850 / 900 Beds</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Active Digital Outpasses:</span>
+                  <span class="status-badge badge-success" style="font-size: 10px;">28 Approved & Tracked</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Mess Food Hygiene Audit:</span>
+                  <span class="status-badge badge-success" style="font-size: 10px;">Grade A+ (FSSAI Verified)</span>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Hostel" style="width: 100%;">
+                <i class="fas fa-shield-alt"></i> Verify Gate Security Night Logs
+              </button>
+            </div>
+
+            <!-- 5. TRANSPORT & FLEET -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #ECFDF5; color: #059669; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-bus"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Transport & Transit</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Fleet Logistics Department</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-success">22/22 LIVE GPS</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Fleet Coach Strength:</span>
+                  <strong>22 AC Buses</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Operational Routes:</span>
+                  <strong>18 Routes (120 km radius)</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Registered Daily Commuters:</span>
+                  <strong>1,120 Pass Holders</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Vehicle Fitness & RTO:</span>
+                  <span class="status-badge badge-success" style="font-size: 10px;">100% Certified Valid</span>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Transport" style="width: 100%;">
+                <i class="fas fa-satellite-dish"></i> Ping Bus GPS Telemetry & SOS
+              </button>
+            </div>
+
+            <!-- 6. TRAINING & PLACEMENTS -->
+            <div class="card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div
+                    style="width: 38px; height: 38px; background: #EEF2FF; color: #4F46E5; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                  <div>
+                    <h3 style="font-size: 16px; font-weight: 800; margin: 0;">Placements & Corporate</h3>
+                    <span style="font-size: 11px; color: var(--text-muted);">Career Development Centre</span>
+                  </div>
+                </div>
+                <span class="status-badge badge-primary">92 PARTNERS</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; margin-bottom: 16px;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Offers Released So Far:</span>
+                  <strong class="text-success">680 Offers</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Highest CTC Offered:</span>
+                  <strong class="text-primary">₹44.00 LPA (Google)</strong>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                  <span style="color: var(--text-muted);">Average CTC:</span>
+                  <strong>₹9.20 LPA</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Key Visiting Partners:</span>
+                  <span style="font-size: 11px; color: var(--text-muted);">Google, Microsoft, Amazon, Deloitte</span>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm action-dept-btn" data-dept="Placements" style="width: 100%;">
+                <i class="fas fa-bullhorn"></i> Broadcast Drive Alert to Final Years
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= SECTION: LAB EXAM MANAGEMENT ================= -->
+        <section id="section-lab-exam-mgmt" class="section-view">
+          <div class="page-header"
+            style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+            <div>
+              <h1 class="page-title"><i class="fas fa-laptop-code text-primary"></i> Practical Lab Exam Management</h1>
+              <p class="page-subtitle">Create, monitor, and evaluate student practical coding tests with live test-case
+                sandboxing</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-outline btn-sm" id="btn-open-qbank-modal">
+                <i class="fas fa-cubes"></i> Central Question Bank
+              </button>
+              <button class="btn btn-primary btn-sm" id="btn-open-create-exam-modal">
+                <i class="fas fa-plus"></i> Create Lab Exam
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="font-size: 16px; font-weight: 800;"><i class="fas fa-list text-primary"></i> Scheduled & Active
+                Practical Examinations</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Exam & Subject</th>
+                    <th>Duration & Marks</th>
+                    <th>Status</th>
+                    <th>Examinees</th>
+                    <th>Avg Score</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="faculty-exams-tbody">
+                  <!-- Rendered dynamically by facultyLabExam.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SECTION: DOCUMENTS & VERIFICATION (VERIFYHUB) ================= -->
+        <section id="section-documents-verification" class="section-view">
+          <!-- VerifyHub Universal Engine dynamically renders here -->
+        </section>
+
+        <!-- ================= SECTION: FACULTY CONNECT & INQUIRIES ================= -->
+        <section id="section-faculty-connect" class="section-view">
+          <!-- Faculty Connect module dynamically renders here -->
+        </section>
+
+        <!-- ================= SECTION: ACCOUNT MANAGEMENT ================= -->
+        <section id="section-account-mgmt" class="section-view">
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+            <div>
+              <h2 class="font-weight-bold text-dark mb-1"><i class="fas fa-users-cog text-warning mr-2"></i> Account
+                Management</h2>
+              <p class="text-muted mb-0">Create, manage, activate, deactivate, and reset credentials for Students and
+                Faculty members.</p>
+            </div>
+            <div class="mt-2">
+              <button class="btn btn-primary mr-2" onclick="AccountManager.goToRegisterStudent()">
+                <i class="fas fa-user-plus mr-1"></i> Register Student Account
+              </button>
+              <button class="btn btn-success" onclick="AccountManager.goToRegisterFaculty()">
+                <i class="fas fa-chalkboard-teacher mr-1"></i> Register Faculty Account
+              </button>
+            </div>
+          </div>
+
+          <!-- Live MongoDB Account Statistics -->
+          <div class="acct-stats-grid">
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon students"><i class="fas fa-user-graduate"></i></div>
+              <div class="acct-stat-info">
+                <h4>Total Students</h4>
+                <div class="stat-value" id="statTotalStudents">--</div>
+              </div>
+            </div>
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon active"><i class="fas fa-user-check"></i></div>
+              <div class="acct-stat-info">
+                <h4>Active Students</h4>
+                <div class="stat-value text-success" id="statActiveStudents">--</div>
+              </div>
+            </div>
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon inactive"><i class="fas fa-user-times"></i></div>
+              <div class="acct-stat-info">
+                <h4>Inactive Students</h4>
+                <div class="stat-value text-danger" id="statInactiveStudents">--</div>
+              </div>
+            </div>
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon faculty"><i class="fas fa-chalkboard-teacher"></i></div>
+              <div class="acct-stat-info">
+                <h4>Total Faculty</h4>
+                <div class="stat-value" id="statTotalFaculty">--</div>
+              </div>
+            </div>
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon active"><i class="fas fa-check-double"></i></div>
+              <div class="acct-stat-info">
+                <h4>Active Faculty</h4>
+                <div class="stat-value text-success" id="statActiveFaculty">--</div>
+              </div>
+            </div>
+            <div class="acct-stat-card">
+              <div class="acct-stat-icon inactive"><i class="fas fa-user-slash"></i></div>
+              <div class="acct-stat-info">
+                <h4>Inactive Faculty</h4>
+                <div class="stat-value text-danger" id="statInactiveFaculty">--</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls Bar: Search, Tab Toggle, and Status Filters -->
+          <div class="acct-controls-bar">
+            <div class="acct-filter-tabs">
+              <button class="acct-tab-btn active" id="acctTabStudents"><i class="fas fa-user-graduate mr-1"></i>
+                Students</button>
+              <button class="acct-tab-btn" id="acctTabFaculty"><i class="fas fa-chalkboard-teacher mr-1"></i>
+                Faculty</button>
+            </div>
+
+            <div class="acct-search-box">
+              <i class="fas fa-search text-muted"></i>
+              <input type="text" id="acctSearchInput" placeholder="Search by name, email, roll number, employee ID...">
+            </div>
+
+            <div class="acct-filter-tabs">
+              <button class="acct-tab-btn acct-status-filter active" data-status="all">All</button>
+              <button class="acct-tab-btn acct-status-filter" data-status="active"><i
+                  class="fas fa-circle text-success small mr-1"></i> Active</button>
+              <button class="acct-tab-btn acct-status-filter" data-status="inactive"><i
+                  class="fas fa-circle text-danger small mr-1"></i> Inactive</button>
+            </div>
+          </div>
+
+          <!-- Students Table Wrap -->
+          <div id="acctStudentsTableWrap" class="card shadow-sm border-0 mb-4">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student Name & Email</th>
+                    <th>Roll Number</th>
+                    <th>Branch & Semester</th>
+                    <th>Batch</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="acctStudentsTbody">
+                  <!-- Dynamically populated by accountManagement.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Faculty Table Wrap (Hidden by default) -->
+          <div id="acctFacultyTableWrap" class="card shadow-sm border-0 mb-4 hidden">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Faculty Name & Email</th>
+                    <th>Employee ID</th>
+                    <th>Designation & Dept</th>
+                    <th>Subjects Taught</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="acctFacultyTbody">
+                  <!-- Dynamically populated by accountManagement.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SECTION: REGISTER STUDENT (DEDICATED PAGE) ================= -->
+        <section id="section-register-student" class="section-view">
+          <div class="reg-page-shell">
+            <div class="reg-page-header">
+              <div>
+                <button type="button" class="btn btn-sm btn-outline-secondary mb-2"
+                  onclick="AccountManager.goBackToDirectory()">
+                  <i class="fas fa-arrow-left mr-1"></i> Back to Account Directory
+                </button>
+                <h2 class="font-weight-bold text-dark mb-1">
+                  <i class="fas fa-user-plus text-primary mr-2"></i> Register New Student
+                </h2>
+                <p class="text-muted mb-0">
+                  Provision a verified student portal account in MongoDB with academic roll number and login
+                  credentials.
+                </p>
+              </div>
+              <div>
+                <button type="button" class="btn btn-outline-primary btn-sm"
+                  onclick="AccountManager.fillSampleStudent()">
+                  <i class="fas fa-magic mr-1"></i> Auto-Fill Sample Data
+                </button>
+              </div>
+            </div>
+
+            <div class="reg-card">
+              <form id="regStudentForm" onsubmit="AccountManager.submitRegisterStudent(event)">
+                <!-- Personal Identity -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-id-badge text-primary"></i> 1. Student Personal Identity
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Full Legal Name <span class="text-danger">*</span></label>
+                    <input type="text" id="regStudName" name="name" required placeholder="e.g. Rahul Sharma"
+                      autocomplete="off">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Official Institutional Email <span class="text-danger">*</span></label>
+                    <input type="email" id="regStudEmail" name="email" required
+                      placeholder="e.g. rahul.sharma@nriit.edu.in" autocomplete="off">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Roll Number / Hall Ticket <span class="text-danger">*</span></label>
+                    <input type="text" id="regStudRoll" name="rollNumber" required placeholder="e.g. 22KN1A0588"
+                      style="text-transform: uppercase;">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Contact Phone Number</label>
+                    <input type="tel" id="regStudPhone" name="phone" placeholder="e.g. 9876543210">
+                  </div>
+                </div>
+
+                <!-- Academic Enrollment -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-graduation-cap text-primary"></i> 2. Academic Enrollment & Department
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Program / Department <span class="text-danger">*</span></label>
+                    <select id="regStudBranch" name="branch" required>
+                      <option value="Computer Science & Engineering">Computer Science & Engineering (CSE)</option>
+                      <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine
+                        Learning (AI&ML)</option>
+                      <option value="Data Science">Data Science (AI&DS)</option>
+                      <option value="Electronics & Communication">Electronics & Communication (ECE)</option>
+                      <option value="Information Technology">Information Technology (IT)</option>
+                      <option value="Electrical & Electronics">Electrical & Electronics (EEE)</option>
+                      <option value="Mechanical Engineering">Mechanical Engineering (ME)</option>
+                      <option value="Civil Engineering">Civil Engineering (CE)</option>
+                    </select>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Academic Year & Semester</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                      <select id="regStudYear" name="year">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3" selected>3rd Year</option>
+                        <option value="4">4th Year</option>
+                      </select>
+                      <select id="regStudSemester" name="semester">
+                        <option value="1">1st Sem</option>
+                        <option value="2" selected>2nd Sem</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Section</label>
+                    <input type="text" id="regStudSection" name="section" value="A" placeholder="e.g. A, B, C">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Academic Batch</label>
+                    <input type="text" id="regStudBatch" name="batch" value="2022-2026" placeholder="e.g. 2022-2026">
+                  </div>
+                </div>
+
+                <!-- Credentials & Security -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-shield-alt text-primary"></i> 3. Security Credentials & Initial Password
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Initial Login Password <span class="text-danger">*</span></label>
+                    <input type="text" id="regStudPassword" name="password" required value="Password@123">
+                    <small class="text-muted">The student can change this password after their first login.</small>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Account Status</label>
+                    <select id="regStudStatus" name="isActive">
+                      <option value="true" selected>🟢 Active (Ready to Login Immediately)</option>
+                      <option value="false">🔴 Inactive (Pending Verification)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="reg-actions-row">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btnSubmitRegStudent">
+                    <i class="fas fa-user-check mr-1"></i> Complete Student Registration
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary" onclick="AccountManager.goBackToDirectory()">
+                    Cancel & Return
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SECTION: REGISTER FACULTY (DEDICATED PAGE) ================= -->
+        <section id="section-register-faculty" class="section-view">
+          <div class="reg-page-shell">
+            <div class="reg-page-header">
+              <div>
+                <button type="button" class="btn btn-sm btn-outline-secondary mb-2"
+                  onclick="AccountManager.goBackToDirectory()">
+                  <i class="fas fa-arrow-left mr-1"></i> Back to Account Directory
+                </button>
+                <h2 class="font-weight-bold text-dark mb-1">
+                  <i class="fas fa-chalkboard-teacher text-success mr-2"></i> Register New Faculty Member
+                </h2>
+                <p class="text-muted mb-0">
+                  Provision an official faculty portal account in MongoDB and synchronize with the Faculty Connect
+                  directory.
+                </p>
+              </div>
+              <div>
+                <button type="button" class="btn btn-outline-success btn-sm"
+                  onclick="AccountManager.fillSampleFaculty()">
+                  <i class="fas fa-magic mr-1"></i> Auto-Fill Sample Data
+                </button>
+              </div>
+            </div>
+
+            <div class="reg-card">
+              <form id="regFacultyForm" onsubmit="AccountManager.submitRegisterFaculty(event)">
+                <!-- Faculty Identity -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-user-tie text-success"></i> 1. Faculty Personal & Contact Details
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Full Faculty Name (with prefix) <span class="text-danger">*</span></label>
+                    <input type="text" id="regFacName" name="name" required placeholder="e.g. Dr. K. Venkat Rao"
+                      autocomplete="off">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Official Institutional Email <span class="text-danger">*</span></label>
+                    <input type="email" id="regFacEmail" name="email" required
+                      placeholder="e.g. venkat.rao@nriit.edu.in" autocomplete="off">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Faculty / Employee ID <span class="text-danger">*</span></label>
+                    <input type="text" id="regFacEmployeeId" name="employeeId" required placeholder="e.g. FAC-CSE-042"
+                      style="text-transform: uppercase;">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Contact Phone Number</label>
+                    <input type="tel" id="regFacPhone" name="phone" placeholder="e.g. 9440123456">
+                  </div>
+                </div>
+
+                <!-- Academic Department & Designation -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-briefcase text-success"></i> 2. Academic Designation & Qualifications
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Department <span class="text-danger">*</span></label>
+                    <select id="regFacDepartment" name="department" required>
+                      <option value="Computer Science & Engineering">Computer Science & Engineering (CSE)</option>
+                      <option value="Artificial Intelligence & Machine Learning">Artificial Intelligence & Machine
+                        Learning (AI&ML)</option>
+                      <option value="Data Science">Data Science (AI&DS)</option>
+                      <option value="Electronics & Communication">Electronics & Communication (ECE)</option>
+                      <option value="Information Technology">Information Technology (IT)</option>
+                      <option value="Electrical & Electronics">Electrical & Electronics (EEE)</option>
+                      <option value="Mechanical Engineering">Mechanical Engineering (ME)</option>
+                      <option value="Civil Engineering">Civil Engineering (CE)</option>
+                      <option value="Basic Sciences & Humanities">Basic Sciences & Humanities</option>
+                    </select>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Academic Designation <span class="text-danger">*</span></label>
+                    <select id="regFacDesignation" name="designation" required>
+                      <option value="Assistant Professor">Assistant Professor</option>
+                      <option value="Associate Professor" selected>Associate Professor</option>
+                      <option value="Professor">Professor</option>
+                      <option value="Head of Department (HOD)">Head of Department (HOD)</option>
+                    </select>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Highest Qualification <span class="text-danger">*</span></label>
+                    <input type="text" id="regFacQualification" name="qualification" required
+                      value="Ph.D. (Computer Science)" placeholder="e.g. Ph.D., M.Tech">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Teaching Experience</label>
+                    <input type="text" id="regFacExperience" name="experience" value="9+ Years"
+                      placeholder="e.g. 8 Years">
+                  </div>
+                </div>
+
+                <!-- Teaching Subjects & Specialization -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-book-reader text-success"></i> 3. Subjects Taught & Campus Office
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group reg-col-full">
+                    <label>Subjects Handled (comma-separated)</label>
+                    <input type="text" id="regFacSubjects" name="subjects"
+                      value="Design & Analysis of Algorithms, Advanced Web Technologies, Operating Systems"
+                      placeholder="e.g. Data Structures, Cloud Computing">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Office Cabin / Location</label>
+                    <input type="text" id="regFacCabin" name="cabin" value="Aryabhata Block, Room 304"
+                      placeholder="e.g. Main Block, Room 201">
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Student Consultation Hours</label>
+                    <input type="text" id="regFacHours" name="consultationHours" value="Mon-Fri 03:00 PM - 04:30 PM"
+                      placeholder="e.g. Daily 3 PM - 4:30 PM">
+                  </div>
+                </div>
+
+                <!-- Credentials -->
+                <div class="reg-form-section-title">
+                  <i class="fas fa-key text-success"></i> 4. Login Password
+                </div>
+                <div class="reg-form-grid">
+                  <div class="reg-form-group">
+                    <label>Initial Login Password <span class="text-danger">*</span></label>
+                    <input type="text" id="regFacPassword" name="password" required value="Faculty@123">
+                    <small class="text-muted">Faculty member can change credentials after login.</small>
+                  </div>
+                  <div class="reg-form-group">
+                    <label>Account Status</label>
+                    <select id="regFacStatus" name="isActive">
+                      <option value="true" selected>🟢 Active (Ready to Login Immediately)</option>
+                      <option value="false">🔴 Inactive</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="reg-actions-row">
+                  <button type="submit" class="btn btn-success btn-lg" id="btnSubmitRegFaculty">
+                    <i class="fas fa-user-check mr-1"></i> Complete Faculty Registration
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary" onclick="AccountManager.goBackToDirectory()">
+                    Cancel & Return
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SECTION: ANNOUNCEMENTS & EXAMS ================= -->
+        <section id="section-announcements-exams" class="section-view">
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+            <div>
+              <h2 class="font-weight-bold text-dark mb-1"><i class="fas fa-bullhorn text-danger mr-2"></i> Announcements
+                & Examination Countdown</h2>
+              <p class="text-muted mb-0">Broadcast institutional notices, schedule upcoming examinations, and track
+                countdowns.</p>
+            </div>
+            <div class="mt-2">
+              <button class="btn btn-danger mr-2" onclick="promptPublishAnnouncement()">
+                <i class="fas fa-plus-circle mr-1"></i> Publish Announcement
+              </button>
+              <button class="btn btn-outline-primary" onclick="promptScheduleExam()">
+                <i class="fas fa-calendar-plus mr-1"></i> Schedule Exam
+              </button>
+            </div>
+          </div>
+
+          <!-- Upcoming Exam Countdown Card -->
+          <div class="exam-countdown-card mb-4">
+            <div class="exam-countdown-header">
+              <div>
+                <span class="badge badge-warning text-uppercase font-weight-bold"><i class="fas fa-bolt mr-1"></i>
+                  Upcoming Examination</span>
+                <h3 class="mt-2 text-white font-weight-bold" id="countdownExamTitle">Loading next exam...</h3>
+                <div class="small text-light" id="countdownExamMeta">Fetching schedule...</div>
+                <div class="small text-light mt-1 font-italic" id="countdownExamVenue"></div>
+              </div>
+            </div>
+
+            <div class="countdown-timer-grid">
+              <div class="countdown-box">
+                <div class="count-num" id="countDays">00</div>
+                <div class="count-label">Days</div>
+              </div>
+              <div class="countdown-box">
+                <div class="count-num" id="countHours">00</div>
+                <div class="count-label">Hours</div>
+              </div>
+              <div class="countdown-box">
+                <div class="count-num" id="countMins">00</div>
+                <div class="count-label">Minutes</div>
+              </div>
+              <div class="countdown-box">
+                <div class="count-num" id="countSecs">00</div>
+                <div class="count-label">Seconds</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-7">
+              <h4 class="font-weight-bold text-dark mb-3"><i class="fas fa-stream mr-2 text-primary"></i> Active
+                Announcements</h4>
+              <div id="announcementsFeedList">
+                <!-- Dynamically loaded by notificationsAndCalendar.js -->
+              </div>
+            </div>
+            n <div class="col-lg-5">
+              <h4 class="font-weight-bold text-dark mb-3"><i class="fas fa-calendar-alt mr-2 text-info"></i> Academic
+                Calendar & Deadlines</h4>
+              <div id="academicCalendarEventsList">
+                <!-- Dynamically loaded by notificationsAndCalendar.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/accountManagement.js"></script>
+  <script src="js/notificationsAndCalendar.js"></script>
+  <script>
+    function promptPublishAnnouncement() {
+      const title = prompt('Announcement Title:');
+      if (!title) return;
+      const content = prompt('Announcement Content:');
+      if (!content) return;
+      const priority = prompt('Priority (NORMAL / IMPORTANT / URGENT):', 'IMPORTANT') || 'IMPORTANT';
+
+      window.PortalAPI.post('/announcements', {
+        title,
+        content,
+        priority: priority.toUpperCase(),
+        category: 'Academic',
+        targetAudience: ['all'],
+      }).then((res) => {
+        if (res && res.success) {
+          window.showToast?.('Announcement published!', 'success');
+          window.NotificationAndCalendar?.loadAnnouncements();
+        } else {
+          alert(res?.message || 'Failed to publish announcement.');
+        }
+      });
+    }
+
+    function promptScheduleExam() {
+      const subject = prompt('Subject Name:');
+      if (!subject) return;
+      const examName = prompt('Exam Title (e.g. End-Semester Theory Examination):', 'End-Semester Examination');
+      if (!examName) return;
+      const examDate = prompt('Exam Date (YYYY-MM-DD):', new Date().toISOString().split('T')[0]);
+      if (!examDate) return;
+      const startTime = prompt('Start Time:', '09:30 AM') || '09:30 AM';
+      const venue = prompt('Venue / Hall:', 'Examination Block B - Hall 301') || 'Main Exam Hall';
+
+      window.PortalAPI.post('/announcements/exams', {
+        subject,
+        examName,
+        examDate,
+        startTime,
+        venue,
+        durationMinutes: 180,
+      }).then((res) => {
+        if (res && res.success) {
+          window.showToast?.('Exam scheduled successfully!', 'success');
+          window.NotificationAndCalendar?.startExamCountdown();
+        } else {
+          alert(res?.message || 'Failed to schedule exam.');
+        }
+      });
+    }
+  </script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>

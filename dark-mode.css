@@ -1,0 +1,109 @@
+/* =========================================================
+   DARK MODE PALETTE & THEME OVERRIDES
+   ========================================================= */
+
+body.dark {
+  --bg-main: #0B0F19;
+  --bg-card: #151C2C;
+  --bg-card-hover: #1E293B;
+  --border-color: #242E42;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-light: #64748B;
+
+  --primary-50: #1E1B4B;
+  --primary-100: #312E81;
+}
+
+body.dark .site-header {
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom-color: var(--border-color);
+}
+
+body.dark .card,
+body.dark .stat-card,
+body.dark .table-container,
+body.dark .dashboard-sidebar,
+body.dark .dashboard-topbar,
+body.dark .modal-container,
+body.dark .ai-chat-box {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark .data-table th {
+  background: #111827;
+  border-bottom-color: var(--border-color);
+}
+
+body.dark .data-table td {
+  border-bottom-color: var(--border-color);
+}
+
+body.dark .form-input,
+body.dark .form-select,
+body.dark .form-textarea {
+  background: #111827;
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+body.dark .form-input:focus,
+body.dark .form-select:focus,
+body.dark .form-textarea:focus {
+  background: #151C2C;
+  border-color: var(--primary-500);
+}
+
+body.dark .sidebar-link:hover {
+  background: #1E293B;
+  color: #A5B4FC;
+}
+
+body.dark .chat-bubble-ai {
+  background: #1E293B;
+  border-color: #2D3748;
+  color: var(--text-main);
+}
+
+body.dark .icon-btn {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+/* Dark Mode Headings Contrast */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark .page-title,
+body.dark .section-title,
+body.dark .reg-page-header h2,
+body.dark .card-title,
+body.dark .task-card-title,
+body.dark .reg-success-box h3 {
+  color: #f8fafc !important;
+}
+
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .reg-form-section-title {
+  color: #93c5fd !important;
+}
+
+body.dark .sidebar-label {
+  color: #60a5fa !important;
+}
+
+body.dark .stat-val {
+  color: #ffffff !important;
+}
+
+body.dark .stat-title {
+  color: #cbd5e1 !important;
+}
+
+body.dark .data-table th {
+  color: #93c5fd !important;
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Verification & Application Guidance | NRI Institute of Technology</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/verifyhub.css">
+  <link rel="stylesheet" href="css/lab-and-voice.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+
+  <style>
+    body {
+      background-color: var(--bg-main, #f8fafc);
+      color: var(--text-color, #1e293b);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dv-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      background: var(--bg-card, #ffffff);
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+    }
+
+    .dv-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .dv-brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md, 10px);
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .dv-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dv-nav-link {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted, #64748b);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm, 8px);
+      transition: all 0.15s ease;
+    }
+
+    .dv-nav-link:hover {
+      background: var(--bg-main, #f1f5f9);
+      color: #0284c7;
+    }
+
+    .dv-nav-link.active {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .dv-member-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: var(--bg-main, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .dv-hero-banner {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
+      color: white;
+      padding: 28px 32px;
+      border-radius: var(--radius-lg, 16px);
+      margin: 20px 0 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.3);
+    }
+
+    .dv-hero-left h1 {
+      margin: 0 0 6px 0;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .dv-hero-left p {
+      margin: 0;
+      opacity: 0.92;
+      font-size: 13px;
+      max-width: 680px;
+      line-height: 1.5;
+    }
+
+    .dv-equal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .dv-content-wrapper {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    /* Override section-view styling so it displays block when standalone */
+    #section-documents-verification {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP NAVIGATION BAR -->
+  <header class="dv-navbar">
+    <a href="javascript:void(0)" id="dv-brand-link" class="dv-brand" style="cursor: pointer; text-decoration: none;">
+      <div class="dv-brand-icon">
+        <i class="fas fa-file-shield"></i>
+      </div>
+      <div>
+        <div style="font-size: 16px; font-weight: 800; color: var(--text-color, #0f172a);">NRI Institute of Technology
+        </div>
+        <div
+          style="font-size: 11px; color: var(--text-muted, #64748b); text-transform: uppercase; letter-spacing: 0.05em;">
+          VerifyHub • Universal Verification Portal
+        </div>
+      </div>
+    </a>
+
+    <nav class="dv-nav-links">
+      <a href="student.html" class="dv-nav-link"><i class="fas fa-user-graduate"></i> Student Portal</a>
+      <a href="faculty.html" class="dv-nav-link"><i class="fas fa-chalkboard-teacher"></i> Faculty Portal</a>
+      <a href="admin.html" class="dv-nav-link"><i class="fas fa-shield-alt"></i> Admin Portal</a>
+      <a href="transport.html" class="dv-nav-link"><i class="fas fa-bus"></i> Transport</a>
+
+      <div class="dv-member-chip" id="member-profile-chip">
+        <div
+          style="width: 24px; height: 24px; border-radius: 50%; background: #0284c7; color: white; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;"
+          id="member-avatar">
+          U
+        </div>
+        <div style="line-height: 1.2;">
+          <div style="font-weight: 700; font-size: 12px;" id="member-name">Authenticated Member</div>
+          <div style="font-size: 10px; color: #0284c7; font-weight: 700; text-transform: uppercase;"
+            id="member-role-badge">Equal Access</div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary btn-sm logout-btn" id="dv-logout-btn"
+        style="padding: 6px 12px; font-size: 12px;">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+      </button>
+    </nav>
+  </header>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="dv-content-wrapper">
+    <!-- HERO INTRO BANNER -->
+    <section class="dv-hero-banner">
+      <div class="dv-hero-left">
+        <div class="dv-equal-badge">
+          <i class="fas fa-balance-scale"></i> Equal Access Architecture • All Members
+        </div>
+        <h1>Universal Document Verification & Application Guidance</h1>
+        <p>
+          Single centralized system for <strong>Students</strong>, <strong>Faculty</strong>, and
+          <strong>Administrators</strong>.
+          Inspect prerequisites for international visas, national scholarships, and university admissions. Upload
+          documents for
+          real 14-step deep cryptographic & forensic analysis, track live version history (v1 → v2), and download
+          official PDF audit reports.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <div
+          style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 16px; text-align: center;">
+          <div style="font-size: 20px; font-weight: 800;">14 Steps</div>
+          <div style="font-size: 11px; opacity: 0.9;">Forensic Pipeline</div>
+        </div>
+        <div
+          style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 16px; text-align: center;">
+          <div style="font-size: 20px; font-weight: 800;">SHA-256</div>
+          <div style="font-size: 11px; opacity: 0.9;">Cryptographic Digest</div>
+        </div>
+        <div
+          style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 16px; text-align: center;">
+          <div style="font-size: 20px; font-weight: 800;">6 Languages</div>
+          <div style="font-size: 11px; opacity: 0.9;">Voice AI Assistant</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFYHUB CONTAINER MOUNT POINT -->
+    <div id="section-documents-verification">
+      <div style="text-align: center; padding: 60px 20px; color: var(--text-muted, #64748b);">
+        <i class="fas fa-circle-notch fa-spin" style="font-size: 32px; color: #0284c7; margin-bottom: 16px;"></i>
+        <div style="font-size: 16px; font-weight: 700;">Initializing VerifyHub Universal Engine...</div>
+        <div style="font-size: 13px; margin-top: 6px;">Loading application catalogue, 14-step diagnostic pipeline, and
+          verification records</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script type="module">
+    import { checkAuth, getUser, logout, rolePageMap } from './js/auth.js';
+    import { initTheme } from './js/dashboard.js';
+    import { initDocumentVerificationModule } from './js/documentVerification.js';
+    import { initVoiceAiAssistant } from './js/voiceAiAssistant.js';
+
+    // 1. Initialize design system theme
+    initTheme();
+
+    // 2. Ensure authenticated member session (Equal Access: student, faculty, admin all allowed!)
+    const user = checkAuth(['*']);
+    if (user) {
+      // Brand link routes to user's authorized portal
+      document.getElementById('dv-brand-link')?.addEventListener('click', () => {
+        const dest = (user && user.role && rolePageMap[user.role]) ? rolePageMap[user.role] : 'student.html';
+        window.location.href = dest;
+      });
+
+      // Populate member badge
+      const nameEl = document.getElementById('member-name');
+      const roleEl = document.getElementById('member-role-badge');
+      const avatarEl = document.getElementById('member-avatar');
+
+      if (nameEl) nameEl.textContent = user.name || 'Authenticated Member';
+      if (roleEl) roleEl.textContent = `${(user.role || 'Member').toUpperCase()} • EQUAL ACCESS`;
+      if (avatarEl) avatarEl.textContent = (user.name || 'U').charAt(0).toUpperCase();
+
+      // 3. Attach sign out handler
+      const logoutBtn = document.getElementById('dv-logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+
+      // 4. Initialize VerifyHub universal document verification engine
+      initDocumentVerificationModule();
+
+      // 5. Initialize Multilingual Voice AI assistant
+      initVoiceAiAssistant();
+    }
+  </script>
+</body>
+
+</html>

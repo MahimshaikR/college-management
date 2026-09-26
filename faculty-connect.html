@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Connect & Ask Faculty | NRI Institute of Technology</title>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/faculty-connect.css">
+  <link rel="stylesheet" href="css/lab-and-voice.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+
+  <style>
+    body {
+      background-color: var(--bg-main, #f8fafc);
+      color: var(--text-color, #1e293b);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fc-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      background: var(--bg-card, #ffffff);
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+    }
+
+    .fc-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .fc-brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md, 10px);
+      background: linear-gradient(135deg, #0f2b5c 0%, #1e3a8a 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .fc-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .fc-nav-link {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted, #64748b);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm, 8px);
+      transition: all 0.15s ease;
+    }
+
+    .fc-nav-link:hover {
+      background: var(--bg-main, #f1f5f9);
+      color: #0f2b5c;
+    }
+
+    .fc-nav-link.active {
+      background: #e0e7ff;
+      color: #312e81;
+      font-weight: 700;
+    }
+
+    .fc-member-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: var(--bg-main, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .fc-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0f2b5c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .fc-main-content {
+      flex: 1;
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP NAVIGATION BAR -->
+  <header class="fc-navbar">
+    <div style="display: flex; align-items: center; gap: 24px;">
+      <a href="javascript:void(0)" id="fc-brand-link" class="fc-brand" style="cursor: pointer; text-decoration: none;">
+        <div class="fc-brand-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <div>
+          <div style="font-weight: 800; font-size: 16px; letter-spacing: -0.02em; line-height: 1.2;">NRIIT</div>
+          <div
+            style="font-size: 10px; color: var(--text-muted, #64748b); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
+            Faculty Connect & Ask Faculty
+          </div>
+        </div>
+      </a>
+
+      <nav class="fc-nav-links hide-mobile">
+        <a href="student.html" class="fc-nav-link"><i class="fas fa-graduation-cap"></i> Student Portal</a>
+        <a href="faculty.html" class="fc-nav-link"><i class="fas fa-chalkboard-user"></i> Faculty Console</a>
+        <a href="admin.html" class="fc-nav-link"><i class="fas fa-shield-alt"></i> Admin Portal</a>
+        <a href="document-verification.html" class="fc-nav-link"><i class="fas fa-file-shield"></i> Documents</a>
+        <a href="faculty-connect.html" class="fc-nav-link active"><i class="fas fa-comments"></i> Faculty Connect</a>
+      </nav>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <button id="theme-toggle-btn" class="icon-btn" title="Toggle Dark/Light Mode"
+        style="width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border-color, #e2e8f0); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <i class="fas fa-moon"></i>
+      </button>
+
+      <div class="fc-member-chip hide-mobile">
+        <div class="fc-avatar" id="member-avatar">U</div>
+        <div>
+          <div id="member-name" style="font-weight: 700; line-height: 1.2;">Authenticated Member</div>
+          <div id="member-role-badge" style="font-size: 10px; color: var(--text-muted, #64748b);">Connected</div>
+        </div>
+      </div>
+
+      <button id="fc-logout-btn" class="icon-btn" title="Sign Out"
+        style="width: 38px; height: 38px; border-radius: 50%; border: 1px solid #fee2e2; background: #fff5f5; color: #dc2626; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main class="fc-main-content">
+    <div id="section-faculty-connect">
+      <div style="text-align: center; padding: 60px 20px; color: var(--text-muted, #64748b);">
+        <i class="fas fa-circle-notch fa-spin" style="font-size: 32px; color: #0f2b5c; margin-bottom: 16px;"></i>
+        <div style="font-size: 16px; font-weight: 700;">Loading Faculty Connect Hub...</div>
+        <div style="font-size: 13px; margin-top: 6px;">Connecting to NRIIT faculty directory, availability schedules,
+          and doubt threads...</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script type="module">
+    import { checkAuth, getUser, logout, rolePageMap } from './js/auth.js';
+    import { initTheme } from './js/dashboard.js';
+    import { initFacultyConnect } from './js/facultyConnect.js';
+    import { initVoiceAiAssistant } from './js/voiceAiAssistant.js';
+
+    // 1. Theme initialization
+    initTheme();
+
+    // 2. Ensure authentication
+    const user = checkAuth(['*']);
+    if (user) {
+      document.getElementById('fc-brand-link')?.addEventListener('click', () => {
+        const dest = (user && user.role && rolePageMap[user.role]) ? rolePageMap[user.role] : 'student.html';
+        window.location.href = dest;
+      });
+
+      const nameEl = document.getElementById('member-name');
+      const roleEl = document.getElementById('member-role-badge');
+      const avatarEl = document.getElementById('member-avatar');
+
+      if (nameEl) nameEl.textContent = user.name || 'Authenticated Member';
+      if (roleEl) roleEl.textContent = `${(user.role || 'Member').toUpperCase()} • NRIIT PORTAL`;
+      if (avatarEl) avatarEl.textContent = (user.name || 'U').charAt(0).toUpperCase();
+
+      const logoutBtn = document.getElementById('fc-logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+
+      // 3. Initialize Faculty Connect Module
+      initFacultyConnect('section-faculty-connect');
+
+      // 4. Initialize Multilingual Voice Assistant
+      initVoiceAiAssistant();
+    }
+  </script>
+</body>
+
+</html>
