@@ -1,0 +1,9 @@
+PORT=5005
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://mahim:123654789@cluster0.eebromn.mongodb.net/?appName=Cluster0
+JWT_SECRET=super_secret_jwt_key_nexcampus_prod_2026_enterprise
+JWT_EXPIRE=24h
+JWT_REFRESH_SECRET=super_secret_refresh_jwt_key_nexcampus_prod_2026
+JWT_REFRESH_EXPIRE=7d
+AI_API_KEY=mock-enterprise-ai-gemini-2026
+UPLOAD_PATH=./uploads
